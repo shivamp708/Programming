@@ -60,6 +60,7 @@ def reachAtEnd(d,i,j,m,n):
     return reachAtEnd(d,i+d[i][j],j,m,n) or reachAtEnd(d,i,j+d[i][j],m,n)
 print('can i reach:',reachAtEnd(d,0,0,m,n))
 
+
 #given 2d list with some value can you reach from 0,0 to n,m by taking jump of position values
 #count total ways to reach at the end
 
@@ -118,3 +119,40 @@ def reachAtEnd(d,i,j,m,n):
         y = reachAtEnd(d,i,j+d[i][j],m,n)
     return x + y 
 print('Total ways to reach:',reachAtEnd(d,0,0,m,n))
+
+#subset sum problem
+#given an array find can be formulate sum using these element sum
+def subSetSum(a,i,n,currsum,sum):
+    if i>=n:
+        if currsum==sum:
+            return True
+        return False
+    if currsum>sum:
+        return False
+    if currsum==sum:
+        return True
+    return subSetSum(a,i+1,n,currsum+a[i],sum) or subSetSum(a,i+1,n,currsum,sum)
+a = [3,2,1,5]
+sum = 6
+print('sub set sum exists:',subSetSum(a,0,len(a),0,sum))
+#to calculate total number of subset sum available replace or with + in line number 133
+
+#subset sum print subset
+def subSetSum(a,i,n,currsum,sum,subset,listofsubset):
+    if i>=n:
+        if currsum==sum:
+            listofsubset.append(subset)
+        return
+    if currsum>sum:
+        return
+    if currsum==sum:
+        listofsubset.append(subset)
+        return 
+    subSetSum(a,i+1,n,currsum+a[i],sum,subset+[a[i]],listofsubset)
+    subSetSum(a,i+1,n,currsum,sum,subset,listofsubset)
+    return listofsubset
+a = [3,2,1,4,9,10,5]
+sum = 15
+subset = []
+listofsubset = []
+print('all the subset with sum '+str(sum)+':',*subSetSum(a,0,len(a),0,sum,subset,listofsubset))
