@@ -55,3 +55,4 @@ int main()
     insert(head,7);
     Display(head);
 }
+
