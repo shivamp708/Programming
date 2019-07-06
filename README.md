@@ -1,4 +1,1 @@
-# Programming
-Comptetitive Coding.....
-
-Problems asked in interview or programming contest.
+Some data structures and algorithms
